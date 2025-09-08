@@ -23,11 +23,8 @@ export default function FoodTracker() {
       </Title>
       <Button onClick={() => setOpened(true)}>Add Food Item</Button>
       {/* Type additional AddFoodModal here. */}
-      <Modal
-        opened={opened}
-        onClose={() => setOpened(false)}
-        
-      />
+      
+      
       <Divider my="md" />
       {/* Type additional total cost here. */}
       <Title order={4}>Total cost: {} Baht</Title>
