@@ -29,18 +29,22 @@ export default function AddFoodModal({
   const [quantity, setQuantity] = useState<number | string>(0);
   const [category, setCategory] = useState<string | null>(null);
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    if (!name.trim() || !price || !quantity || !category) {
+      return;
+    }
+    onAdd(name, price, quantity, category);
+    onClose();
+    setName("");
+    setPrice(0);
+    setQuantity(0);
+    setCategory(null);
+  };
 
     // หากต้องการแปง type string เป็น type number สามารถดูตัวอย่างนี้ได้
-    let val_number: number = Number("500.0");
-    console.log(val_number + 100); // 600.0
-    if(!name.trim() || !category || !price || !quantity) return;
-    onAdd(name, price, quantity, category);
-    setName("");
-    setPrice(Number);
-    setQuantity(Number);
-    setCategory(String);
-    onClose()
+    // let val_number: number = Number("500.0");
+    // console.log(val_number + 100); // 600.0
+    
   return (
     /* Type additional text here. */
     <Modal opened={opened} onClose={onClose} title="Add an item">
@@ -68,10 +72,10 @@ export default function AddFoodModal({
           label="Quantity"
           withAsterisk
           description="Quantity "
-          error={!price && "Quantity is required"} 
+          error={!quantity && "Quantity is required"} 
           placeholder="0"
           min={0}
-          value={price}
+          value={quantity}
           onChange={setQuantity}
         />
         <Select
@@ -87,5 +91,6 @@ export default function AddFoodModal({
         <Button onClick={handleSubmit}>Submit</Button>
       </Stack>
     </Modal>
-  );
-}
+  )
+  
+};
